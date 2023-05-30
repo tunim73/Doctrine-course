@@ -17,9 +17,9 @@ class Student
     #[Id]
     #[GeneratedValue]
     #[Column]
-    private readonly int $id;
+    private int $id;
     #[Column(type: 'string')]
-    private readonly string $nome;
+    private string $nome;
 
     public function __construct(string $nome)
     {
@@ -41,6 +41,16 @@ class Student
     {
         return $this->nome;
     }
+
+
+    /**
+     * @param string $nome
+     */
+    public function setNome(string $nome): void
+    {
+        $this->nome = $nome;
+    }
+
 
 
 }
