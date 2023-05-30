@@ -1,0 +1,24 @@
+{
+    "name": "antonio/doctrine",
+    "autoload": {
+        "psr-4": {
+            "Antonio\\Doctrine\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "tunim73",
+            "email": "antonio.netto973@gmail.com"
+        }
+    ],
+    "scripts": {
+        "dt": "vendor/bin/doctrine"
+    },
+    "require": {
+        "doctrine/orm": "^2.11.0",
+        "doctrine/dbal": "^3.2",
+        "symfony/yaml": "^5.4",
+        "symfony/cache": "^5.4"
+
+    }
+}
