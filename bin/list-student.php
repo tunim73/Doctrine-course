@@ -11,18 +11,23 @@ $entityManager = EntityManagerCreator::createEntityManager();
 $studentRepository = $entityManager->getRepository(Student::class);
 
 /** @var Student[] $studentList */
-$studentList = $studentRepository->findAll();
+$studentList = $studentRepository->findAll(); // nem precisei forçar o relacionamento aqui, foi automático
 
 foreach ($studentList as $student ){
     $id = $student->getId();
     $nome = $student->getNome();
 
     echo "id: $id Nome: {$student->getNome()}" . PHP_EOL;
-}
 
+    foreach ($student->getPhones() as $phone){
+        echo " --- phone: $phone->number". PHP_EOL;
+    }
+    echo PHP_EOL;
+}
+/*
 $student = $studentRepository->find(2);
 echo $student->getNome() . PHP_EOL;
-
+*/
 /*
 public function findBy(
     array $criteria,
@@ -33,7 +38,7 @@ public function findBy(
 exemplo:
 $alunoRepository->findBy([], ['nome' => 'ASC'], 2, 3);
 */
-
+/*
 
 $student = $studentRepository->findBy([
    "nome" => "Sakura"
@@ -46,3 +51,4 @@ $student = $studentRepository->findOneBy([
 ]);
 
 echo $student->getNome() . PHP_EOL;
+*/
