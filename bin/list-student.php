@@ -1,5 +1,6 @@
 <?php
 
+use Antonio\Doctrine\Entity\Course;
 use Antonio\Doctrine\Entity\Phone;
 use Antonio\Doctrine\Entity\Student;
 use Antonio\Doctrine\Helper\EntityManagerCreator;
@@ -24,7 +25,14 @@ foreach ($studentList as $student ){
     echo implode(', ',$student->getPhones()
         ->map(fn(Phone $phone) => $phone->number)
         ->toArray());
+    echo PHP_EOL;
+    echo implode(', ', $student->getCourses()
+    ->map(fn(Course $course) => $course->nome)
+    ->toArray());
 
+    echo PHP_EOL;
+
+    echo '-----------------------------------';
     /*
     To pegando uma colection, faço um map dela, aparentemente só dar fazer map de collections.
     e com ->to array(); transformo a coleção para um array normal.
