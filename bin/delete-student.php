@@ -15,10 +15,10 @@ apnas seguindo o idStudent, isso significa menos um query ao banco, visto que fa
 select com find
 e depois um update / delete
 */
-$student= $entityManager->getPartialReference(Student::class, $idStudent);
-/*
+/*$student= $entityManager->getPartialReference(Student::class, $idStudent);*/
+
 $student = $entityManager->find(Student::class, $idStudent);
-*/
+
 
 
 $entityManager->remove($student);

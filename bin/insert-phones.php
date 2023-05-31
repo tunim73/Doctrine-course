@@ -8,9 +8,16 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $entityManager = EntityManagerCreator::createEntityManager();
 
-$nameStudent = "Zoro";
+$nameStudent = "Sanji";
 $student = new Student($nameStudent);
 $entityManager->persist($student);
+
+
+$student->addPhone(new Phone('(21) 999 999 999'));
+$student->addPhone(new Phone('(11) 933 333 333'));
+
+
+/* Forma antiga, quando não tinha o 'persist' configurado no cascade de student
 
 $phone1 = new Phone('(21) 900 000 000');
 $phone2 = new Phone('(11) 911 111 111');
@@ -19,6 +26,9 @@ $entityManager->persist($phone1);
 $entityManager->persist($phone2);
 
 $student->addPhone($phone1);
-$student->addPhone($phone2);
+$student->addPhone($phone2);*/
+
+
+
 
 $entityManager->flush();

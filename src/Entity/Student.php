@@ -3,6 +3,7 @@
 namespace Antonio\Doctrine\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\Entity;
 use Doctrine\ORM\Mapping\GeneratedValue;
@@ -23,7 +24,10 @@ class Student
     #[Column(type: 'string')]
     private string $nome;
 
-    #[OneToMany(mappedBy: "student",targetEntity: Phone::class )]
+    #[OneToMany(
+        mappedBy: "student",
+        targetEntity: Phone::class,
+        cascade: ['persist', 'remove'] )]
     public iterable $phones;
 
     public function __construct(string $nome)
@@ -39,14 +43,10 @@ class Student
         $phone->setStudent($this);
     }
 
-
-
-
-
     /**
-     * @return iterable<Phone>
+     * @return Collection<Phone>
      */
-    public function getPhones(): iterable
+    public function getPhones(): Collection
     {
         return $this->phones;
     }

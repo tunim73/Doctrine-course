@@ -1,5 +1,6 @@
 <?php
 
+use Antonio\Doctrine\Entity\Phone;
 use Antonio\Doctrine\Entity\Student;
 use Antonio\Doctrine\Helper\EntityManagerCreator;
 
@@ -13,15 +14,25 @@ $studentRepository = $entityManager->getRepository(Student::class);
 /** @var Student[] $studentList */
 $studentList = $studentRepository->findAll(); // nem precisei forçar o relacionamento aqui, foi automático
 
+
 foreach ($studentList as $student ){
     $id = $student->getId();
     $nome = $student->getNome();
 
     echo "id: $id Nome: {$student->getNome()}" . PHP_EOL;
 
-    foreach ($student->getPhones() as $phone){
-        echo " --- phone: $phone->number". PHP_EOL;
-    }
+    echo implode(', ',$student->getPhones()
+        ->map(fn(Phone $phone) => $phone->number)
+        ->toArray());
+
+    /*
+    To pegando uma colection, faço um map dela, aparentemente só dar fazer map de collections.
+    e com ->to array(); transformo a coleção para um array normal.
+
+    Por mais que só de para fazer map de collections, a função array_map tem o mesmo efeito em arrays.
+    */
+
+
     echo PHP_EOL;
 }
 /*
