@@ -9,11 +9,18 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $entityManager = EntityManagerCreator::createEntityManager();
 
-//classe ou objeto de uma tabela
-$studentRepository = $entityManager->getRepository(Student::class);
+$dql = 'SELECT alguma_coisa FROM Antonio\\Doctrine\\Entity\\Student alguma_coisa';
 
 /** @var Student[] $studentList */
-$studentList = $studentRepository->findAll(); // nem precisei forçar o relacionamento aqui, foi automático
+$studentList = $entityManager->createQuery($dql)->getResult();
+
+
+
+
+/*//classe ou objeto de uma tabela
+$studentRepository = $entityManager->getRepository(Student::class);*/
+///** @var Student[] $studentList */
+/*$studentList = $studentRepository->findAll(); // nem precisei forçar o relacionamento aqui, foi automático*/
 
 
 foreach ($studentList as $student ){
@@ -32,7 +39,7 @@ foreach ($studentList as $student ){
 
     echo PHP_EOL;
 
-    echo '-----------------------------------';
+    echo '-----------------------------------'. PHP_EOL;
     /*
     To pegando uma colection, faço um map dela, aparentemente só dar fazer map de collections.
     e com ->to array(); transformo a coleção para um array normal.
@@ -43,6 +50,15 @@ foreach ($studentList as $student ){
 
     echo PHP_EOL;
 }
+$EntityStudent = Student::class;
+$dql = "SELECT COUNT(students) AS NUMERO FROM $EntityStudent students";
+
+var_dump($entityManager->createQuery($dql)->getSingleScalarResult());
+//var_dump($entityManager->createQuery($dql)->getSingleResult();
+//var_dump($entityManager->createQuery($dql)->getResult());
+//echo 'Quantidade de alunos: ' . count($studentList);
+
+
 /*
 $student = $studentRepository->find(2);
 echo $student->getNome() . PHP_EOL;
