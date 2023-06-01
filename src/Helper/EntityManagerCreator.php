@@ -3,8 +3,11 @@
 namespace Antonio\Doctrine\Helper;
 
 use Doctrine\DBAL\DriverManager;
+use Doctrine\DBAL\Logging\Middleware;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
+use Symfony\Component\Console\Logger\ConsoleLogger;
+use Symfony\Component\Console\Output\ConsoleOutput;
 
 require_once "vendor/autoload.php";
 
@@ -23,6 +26,13 @@ class EntityManagerCreator
             'driver' => 'pdo_sqlite',
             'path' => __DIR__ . '/../../db.sqlite',
         ], $config);*/
+
+        $config->setMiddlewares([
+            new Middleware(
+                new ConsoleLogger(
+                    new ConsoleOutput(
+                        ConsoleOutput::VERBOSITY_DEBUG)))
+        ]);
 
 
         $connection = DriverManager::getConnection([
