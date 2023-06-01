@@ -1,0 +1,128 @@
+<?php //Antonio__Doctrine__Entity__Course__CLASSMETADATA__
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (($p = &Registry::$prototypes)['Doctrine\\ORM\\Mapping\\ClassMetadata'] ?? Registry::p('Doctrine\\ORM\\Mapping\\ClassMetadata')),
+        clone ($p['Doctrine\\ORM\\Id\\IdentityGenerator'] ?? Registry::p('Doctrine\\ORM\\Id\\IdentityGenerator')),
+    ],
+    null,
+    [
+        'stdClass' => [
+            'name' => [
+                'Antonio\\Doctrine\\Entity\\Course',
+            ],
+            'namespace' => [
+                'Antonio\\Doctrine\\Entity',
+            ],
+            'rootEntityName' => [
+                'Antonio\\Doctrine\\Entity\\Course',
+            ],
+            'identifier' => [
+                [
+                    'id',
+                ],
+            ],
+            'generatorType' => [
+                4,
+            ],
+            'fieldMappings' => [
+                [
+                    'id' => [
+                        'fieldName' => 'id',
+                        'type' => 'integer',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => null,
+                        'id' => true,
+                        'columnName' => 'id',
+                    ],
+                    'nome' => [
+                        'fieldName' => 'nome',
+                        'type' => 'string',
+                        'scale' => null,
+                        'length' => null,
+                        'unique' => false,
+                        'nullable' => false,
+                        'precision' => null,
+                        'columnName' => 'nome',
+                    ],
+                ],
+            ],
+            'fieldNames' => [
+                [
+                    'id' => 'id',
+                    'nome' => 'nome',
+                ],
+            ],
+            'columnNames' => [
+                [
+                    'id' => 'id',
+                    'nome' => 'nome',
+                ],
+            ],
+            'table' => [
+                [
+                    'name' => 'Course',
+                ],
+            ],
+            'associationMappings' => [
+                [
+                    'students' => [
+                        'fieldName' => 'students',
+                        'joinTable' => [
+                            'name' => 'course_student',
+                            'joinColumns' => [
+                                [
+                                    'name' => 'course_id',
+                                    'referencedColumnName' => 'id',
+                                    'onDelete' => 'CASCADE',
+                                ],
+                            ],
+                            'inverseJoinColumns' => [
+                                [
+                                    'name' => 'student_id',
+                                    'referencedColumnName' => 'id',
+                                    'onDelete' => 'CASCADE',
+                                ],
+                            ],
+                        ],
+                        'targetEntity' => 'Antonio\\Doctrine\\Entity\\Student',
+                        'mappedBy' => null,
+                        'inversedBy' => 'courses',
+                        'cascade' => [],
+                        'orphanRemoval' => false,
+                        'fetch' => 2,
+                        'type' => 8,
+                        'isOwningSide' => true,
+                        'sourceEntity' => 'Antonio\\Doctrine\\Entity\\Course',
+                        'isCascadeRemove' => false,
+                        'isCascadePersist' => false,
+                        'isCascadeRefresh' => false,
+                        'isCascadeMerge' => false,
+                        'isCascadeDetach' => false,
+                        'joinTableColumns' => [
+                            'course_id',
+                            'student_id',
+                        ],
+                        'isOnDeleteCascade' => true,
+                        'relationToSourceKeyColumns' => [
+                            'course_id' => 'id',
+                        ],
+                        'relationToTargetKeyColumns' => [
+                            'student_id' => 'id',
+                        ],
+                    ],
+                ],
+            ],
+            'idGenerator' => [
+                $o[1],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);

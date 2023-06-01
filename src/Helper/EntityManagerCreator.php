@@ -6,6 +6,7 @@ use Doctrine\DBAL\DriverManager;
 use Doctrine\DBAL\Logging\Middleware;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\ORMSetup;
+use Symfony\Component\Cache\Adapter\PhpFilesAdapter;
 use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
@@ -34,7 +35,21 @@ class EntityManagerCreator
                         ConsoleOutput::VERBOSITY_DEBUG)))
         ]);
 
+        $cacheDirectory = __DIR__ . '/../../var/cache';
 
+        $config->setMetadataCache(
+            new PhpFilesAdapter(
+                namespace: 'metadata_cache',
+                directory: $cacheDirectory
+            )
+        );
+
+        $config->setQueryCache(
+            new PhpFilesAdapter(
+                namespace: 'query_cache',
+                directory: $cacheDirectory
+            )
+        );
         $connection = DriverManager::getConnection([
             'dbname' => 'doctrineBasic',
             'user' => 'laranja',
