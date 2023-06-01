@@ -9,12 +9,22 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $entityManager = EntityManagerCreator::createEntityManager();
 
-$dql = 'SELECT alguma_coisa FROM Antonio\\Doctrine\\Entity\\Student alguma_coisa';
+$EntityStudent = Student::class;
+$dql = "SELECT student, phone, course
+FROM $EntityStudent student 
+    LEFT JOIN student.phones phone 
+    LEFT JOIN student.courses course";
 
-/** @var Student[] $studentList */
 $studentList = $entityManager->createQuery($dql)->getResult();
 
 
+///** @var Student[] $studentList */
+//$studentList = $entityManager->getRepository(Student::class)->findAll();
+
+
+/*$dql = 'SELECT alguma_coisa FROM Antonio\\Doctrine\\Entity\\Student alguma_coisa';*/
+///** @var Student[] $studentList */
+/*$studentList = $entityManager->createQuery($dql)->getResult();*/
 
 
 /*//classe ou objeto de uma tabela
