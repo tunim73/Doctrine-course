@@ -28,7 +28,9 @@ class Student
     #[OneToMany(
         mappedBy: "student",
         targetEntity: Phone::class,
-        cascade: ['persist', 'remove'], fetch: 'LAZY' )]
+        cascade: ['persist', 'remove'],
+        fetch: 'EAGER' )] /* com fetch == eager, toda vez que for feito uma consulta querendo student,
+        vai pegar os telefones junto */
     public iterable $phones;
 
     #[ManyToMany(Course::class, mappedBy: 'students')]
