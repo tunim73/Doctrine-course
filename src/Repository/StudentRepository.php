@@ -11,8 +11,26 @@ class StudentRepository extends EntityRepository
     /**
      * @return Student[]
      */
-    public function studentsAndCourses(): array {
+    public function studentsAndCourses(): array
+    {
+        /*
+        Tanto faz usar as queryBuilders ou dql
+        */
 
+
+        //usando queryBuilder
+        $query = $this->createQueryBuilder('student')
+            ->addSelect('phone')
+            ->addSelect('course')
+            ->leftJoin('student.phones','phone')
+            ->leftJoin('student.courses','course')
+            ->getQuery()
+            ->getResult();
+
+        return $query;
+
+        /*
+        //usando dql
         $EntityStudent = Student::class;
         $dql = "SELECT student, phone, course
         FROM $EntityStudent student 
@@ -23,7 +41,7 @@ class StudentRepository extends EntityRepository
             ->getEntityManager()
             ->createQuery($dql)
             ->getResult();
+        */
     }
-
 
 }
