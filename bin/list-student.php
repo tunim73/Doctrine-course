@@ -9,13 +9,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 $entityManager = EntityManagerCreator::createEntityManager();
 
-$EntityStudent = Student::class;
-$dql = "SELECT student, phone, course
-FROM $EntityStudent student 
-    LEFT JOIN student.phones phone 
-    LEFT JOIN student.courses course";
-
-$studentList = $entityManager->createQuery($dql)->getResult();
+$studentRepository = $entityManager->getRepository(Student::class);
+$studentList = $studentRepository->studentsAndCourses();
 
 
 ///** @var Student[] $studentList */
