@@ -50,6 +50,12 @@ class EntityManagerCreator
                 directory: $cacheDirectory
             )
         );
+
+        $config->setResultCache(new PhpFilesAdapter(
+            namespace: 'result_cache',
+            directory: $cacheDirectory
+        ));
+
         $connection = DriverManager::getConnection([
             'dbname' => 'doctrineBasic',
             'user' => 'laranja',

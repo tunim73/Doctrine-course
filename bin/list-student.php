@@ -57,8 +57,8 @@ foreach ($studentList as $student ){
 }
 $EntityStudent = Student::class;
 $dql = "SELECT COUNT(students) AS NUMERO FROM $EntityStudent students";
-
-var_dump($entityManager->createQuery($dql)->getSingleScalarResult());
+$result =  $entityManager->createQuery($dql)->enableResultCache(84600)->getSingleScalarResult();
+var_dump($result);
 //var_dump($entityManager->createQuery($dql)->getSingleResult();
 //var_dump($entityManager->createQuery($dql)->getResult());
 //echo 'Quantidade de alunos: ' . count($studentList);
